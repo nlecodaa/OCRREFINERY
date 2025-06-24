@@ -1,7 +1,11 @@
 import requests
 import os
+from dotenv import load_dotenv
 
-TOGETHER_API_KEY = "tgp_v1_Xn0QY1s8UYeqmkKhLuFNPy-HPTirft9lsZYPOBulY7Y"
+load_dotenv()
+
+TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
+
 
 def correct_ocr_text_togetherai(ocr_text, model="meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"):
     url = "https://api.together.xyz/v1/chat/completions"
