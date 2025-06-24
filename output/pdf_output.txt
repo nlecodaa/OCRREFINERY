@@ -1,0 +1,44 @@
+
+
+--- Page 1 ---
+Nikhil Kumar
+
++91 9110060595 | nlecodaa@gmail.com | linkedin.com/in/nlecodaa | github.com/nlecodaa
+
+EDUCATION
+Delhi Technical Campus (GGSIPU) Greater Noida ,UP
+Bachelor of Tech in Artificial intelligence and Data Science 2022 — 2026
+
+EXPERIENCE
+
+PR Lead, THE FOSS CLUB NOV 2023 —NOV 24
+Delhi Technical Campus (GGSIPU)
+
+© Lead the Public Relations efforts of the FOSS club, overseeing communication strategies and promotional activities.
+© Developed and implemented marketing campaigns to increase club membership and engagement.
+© Collaborated with team members to organize workshops, seminars, and hackathons focused on open-source technologies
+
+PROJECTS
+
+Chatbot using Natural Language Processing | Python, NLTK, spaCy, scikit-learn JAN 2025
+- Developed an NLP-based chatbot with Flask as backend and React frontend
+- Integrated GitHub OAuth to personalize responses based on user's repositories
+- Used NLTK and spaCy for intent recognition and preprocessing
+- Used Celery and Redis for asynchronous tasks
+
+Face Detection using Computer Vision | Python, OpenCV, Dlib, Deep Learning OCT 2024
+© Built a facial detection and recognition system using OpenCV, Dlib, and facial embeddings
+© Implemented real-time face detection with bounding boxes and facial landmark detection
+© Achieved 90% accuracy on the Labeled Faces in the Wild dataset
+
+TECHNICAL SKILLS
+
+Languages: Python, Java, C/C++, HTML/CSS, JavaScript
+
+Frameworks: TensorFlow, PyTorch , Keras
+
+NLP & LLMs: SpaCy, NLTK, HuggingFace Transformers, OpenAl API, LangChain
+Developer Tools: Git, GitHub, VS Code, Visual Studio, PyCharm, Jupyter Notebook
+Libraries: pandas, NumPy, Matplotlib
+
+Data Analysis & Visualization: Pandas, NumPy, Matplotlib, Seaborn

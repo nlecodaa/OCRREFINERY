@@ -1,0 +1,35 @@
+Here is the cleaned-up text:
+
+
+11:56
+
+
+DELHI TECHNICAL CAMPUS
+GREATER NOIDA.
+Affiliated to GGSIPU and approved by AICTE & COA
+
+Department of Artificial Intelligence
+Assignment No. 1
+Subject Name: Human Computer Interaction
+Subject Code: OAE-306T
+Class: B.Tech AIML/AIDS 6th Sem.
+
+Date of Issue: 
+Date of Submission: 
+Faculty Name: Rishabh Sharma
+Total Marks: 20
+
+* All questions are compulsory to attempt.
+
+
+S.No  Questions  Marks  Blooms
+
+1. Demonstrate the main challenges designers face when creating user-friendly computer interfaces. Provide examples to explain your answer.                  5 
+
+2. Differentiate between usability goals and user experience goals. Give an example of an application and explain how it meets these goals.                  5 
+
+3. Explain the steps in the interaction design process. Why is it important to follow these steps?                                                  5 
+
+4. Discuss the conceptual model. How does it help users understand how a system works? Give one example.                                           5 
+
+5. Explain what "paradigm for interaction" means. Describe one example of how interaction methods have changed over time.                              5
