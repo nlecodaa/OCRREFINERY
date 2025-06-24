@@ -1,11 +1,8 @@
 import requests
 import os
-from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()
-
-TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
-
+TOGETHER_API_KEY = st.secrets["TOGETHER_API_KEY"]
 
 def correct_ocr_text_togetherai(ocr_text, model="meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"):
     url = "https://api.together.xyz/v1/chat/completions"
