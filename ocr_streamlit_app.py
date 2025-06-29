@@ -8,7 +8,6 @@ from ocrmypdf.exceptions import TaggedPDFError
 from pathlib import Path
 from llm_corrector_api import correct_ocr_text_togetherai
 
-
 # --- Backend API Call ---
 def call_backend_ocr_api(file_path):
     with open(file_path, 'rb') as f:
@@ -20,7 +19,6 @@ def call_backend_ocr_api(file_path):
         except requests.exceptions.RequestException as e:
             st.error(f"Backend request failed: {e}")
             return ""
-
 
 # --- PDF Font Support ---
 def get_dejavu_font_path():
@@ -38,7 +36,6 @@ def get_dejavu_font_path():
             return None
     return font_path
 
-
 def break_long_line(pdf, line, available_width):
     while line:
         segment = line
@@ -48,7 +45,6 @@ def break_long_line(pdf, line, available_width):
             segment = line[0]
         pdf.cell(available_width, 10, segment, ln=1)
         line = line[len(segment):]
-
 
 def save_text_to_pdf(text):
     pdf = FPDF()
@@ -91,7 +87,6 @@ def save_text_to_pdf(text):
         pdf_data = bytes(pdf_data)
     return pdf_data
 
-
 def make_pdf_searchable(input_path, output_path, lang):
     try:
         ocrmypdf.ocr(input_path, output_path, language=lang)
@@ -101,47 +96,72 @@ def make_pdf_searchable(input_path, output_path, lang):
     except Exception as e:
         return str(e)
 
-
-# --- UI ---
-
+# --- Custom CSS for Modern Look ---
 st.markdown("""
     <style>
         .block-logo {
-            font-family: 'Helvetica Neue', Arial, 'Segoe UI', sans-serif;
-            font-size: 3.2rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 3rem;
             font-weight: 900;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.14em;
+            color: #1976d2;
             text-align: center;
             margin-top: 10px;
-            margin-bottom: 28px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 8px #e3e3e3;
         }
         .section-title {
-            font-family: 'sans-serif', Arial;
+            font-family: 'Segoe UI', Arial, sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             text-align: center;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            color: #333;
+        }
+        .sidebar-content {
+            background: linear-gradient(120deg, #f3f8ff 60%, #e3e6f3 100%);
+            border-radius: 10px;
+            padding: 14px;
             margin-bottom: 18px;
-            margin-top: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .sidebar-link a {
+            color: #1976d2 !important;
+            text-decoration: none;
+            font-weight: 600;
         }
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="block-logo">OCR REFINERY</div>', unsafe_allow_html=True)
+# --- Branding ---
+st.markdown('<div class="block-logo">🦾 OCR REFINERY Lite</div>', unsafe_allow_html=True)
 st.markdown('<div class="section-title">OCR + LLM TEXT CLEANER</div>', unsafe_allow_html=True)
 
-uploaded_file = st.file_uploader("Upload an Image or PDF", type=["jpg", "jpeg", "png", "pdf"])
-ocr_lang = st.selectbox("Select OCR Language", ["eng", "spa", "fra", "deu", "ita", "por", "rus", "chi_sim", "jpn"])
+# --- Sidebar: Lightweight Notice, Links, Contact ---
+st.sidebar.markdown("""
+<div class="sidebar-content">
+<b>🚦 Lightweight Version</b><br>
+This is a <span style="color:#1976d2;"><b>lightweight</b></span> version of the main project.<br>
+The backend is hosted on a <b>free server</b>, so performance may be limited.<br>
+</div>
+""", unsafe_allow_html=True)
 
-st.sidebar.title("Contact & Info")
+st.sidebar.markdown("""
+- 🌟 <span class="sidebar-link">[Main Project GitHub](https://github.com/yourusername/yourproject)</span>
+- 💬 Want to help expand or chase infinity?<br>
+  <b>Contact:</b> <a href="mailto:yourmail@example.com">yourmail@example.com</a>
+""", unsafe_allow_html=True)
+
+st.sidebar.markdown("---")
 st.sidebar.markdown("""
 - [LinkedIn](https://www.linkedin.com/in/nlecodaa)
 - [GitHub](https://github.com/nlecodaa)
-- Email: [nlecodaa@gmail.com](mailto:nlecodaa@gmail.com)
 """)
 
-st.sidebar.markdown("---")
-st.sidebar.markdown("**Analytics:** Coming soon...")
-
+# --- Main UI ---
+uploaded_file = st.file_uploader("Upload an Image or PDF", type=["jpg", "jpeg", "png", "pdf"])
+ocr_lang = st.selectbox("Select OCR Language", ["eng", "spa", "fra", "deu", "ita", "por", "rus", "chi_sim", "jpn"])
 
 # --- Searchable PDF Button ---
 if uploaded_file and uploaded_file.name.endswith(".pdf"):
@@ -156,12 +176,11 @@ if uploaded_file and uploaded_file.name.endswith(".pdf"):
 
         if result is True:
             with open(temp_output_path, "rb") as f:
-                st.download_button("⬇️Download Searchable PDF", f, file_name="searchable_output.pdf")
+                st.download_button("⬇️ Download Searchable PDF", f, file_name="searchable_output.pdf")
         elif result == "already_tagged":
             st.info("📄 This PDF already has selectable text.")
         else:
             st.error(f"Error: {result}")
-
 
 # --- Main OCR + LLM Pipeline ---
 if uploaded_file:
@@ -210,7 +229,6 @@ if uploaded_file:
                 st.error(f"PDF generation failed: {e}")
                 st.info("As a fallback, you can copy the text below:")
                 st.code(cleaned)
-
 
 # --- Info Section ---
 st.header("About")
