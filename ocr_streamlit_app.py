@@ -96,72 +96,53 @@ def make_pdf_searchable(input_path, output_path, lang):
     except Exception as e:
         return str(e)
 
-# --- Custom CSS for Modern Look ---
+# --- UI ---
+
 st.markdown("""
     <style>
         .block-logo {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            font-size: 3rem;
+            font-family: 'Helvetica Neue', Arial, 'Segoe UI', sans-serif;
+            font-size: 3.2rem;
             font-weight: 900;
-            letter-spacing: 0.14em;
-            color: #1976d2;
+            letter-spacing: 0.18em;
             text-align: center;
             margin-top: 10px;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 8px #e3e3e3;
+            margin-bottom: 28px;
         }
         .section-title {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'sans-serif', Arial;
             font-size: 1.5rem;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 20px;
-            margin-top: 10px;
-            color: #333;
-        }
-        .sidebar-content {
-            background: linear-gradient(120deg, #f3f8ff 60%, #e3e6f3 100%);
-            border-radius: 10px;
-            padding: 14px;
             margin-bottom: 18px;
-            border: 1px solid #e0e0e0;
-        }
-        .sidebar-link a {
-            color: #1976d2 !important;
-            text-decoration: none;
-            font-weight: 600;
+            margin-top: 8px;
         }
     </style>
 """, unsafe_allow_html=True)
 
-# --- Branding ---
-st.markdown('<div class="block-logo">🦾 OCR REFINERY Lite</div>', unsafe_allow_html=True)
+st.markdown('<div class="block-logo">OCR REFINERY</div>', unsafe_allow_html=True)
 st.markdown('<div class="section-title">OCR + LLM TEXT CLEANER</div>', unsafe_allow_html=True)
 
-# --- Sidebar: Lightweight Notice, Links, Contact ---
-st.sidebar.markdown("""
-<div class="sidebar-content">
-<b>🚦 Lightweight Version</b><br>
-This is a <span style="color:#1976d2;"><b>lightweight</b></span> version of the main project.<br>
-The backend is hosted on a <b>free server</b>, so performance may be limited.<br>
-</div>
-""", unsafe_allow_html=True)
+uploaded_file = st.file_uploader("Upload an Image or PDF", type=["jpg", "jpeg", "png", "pdf"])
+ocr_lang = st.selectbox("Select OCR Language", ["eng", "spa", "fra", "deu", "ita", "por", "rus", "chi_sim", "jpn"])
 
-st.sidebar.markdown("""
-- 🌟 <span class="sidebar-link">[Main Project GitHub](https://github.com/yourusername/yourproject)</span>
-- 💬 Want to help expand or chase infinity?<br>
-  <b>Contact:</b> <a href="mailto:yourmail@example.com">yourmail@example.com</a>
-""", unsafe_allow_html=True)
+# --- Sidebar additions ---
+st.sidebar.title("About This Version")
+st.sidebar.info(
+    "This is a lightweight version of the main project.\n\n"
+    "The backend is hosted on a free server, therefore performance may be limited.\n\n"
+    "Original project: https://github.com/nlecodaa/OCRREFINERY \n\n"
+)
 
-st.sidebar.markdown("---")
+st.sidebar.title("Contact & Info")
 st.sidebar.markdown("""
 - [LinkedIn](https://www.linkedin.com/in/nlecodaa)
 - [GitHub](https://github.com/nlecodaa)
+- Email: [nlecodaa@gmail.com](mailto:nlecodaa@gmail.com)
 """)
 
-# --- Main UI ---
-uploaded_file = st.file_uploader("Upload an Image or PDF", type=["jpg", "jpeg", "png", "pdf"])
-ocr_lang = st.selectbox("Select OCR Language", ["eng", "spa", "fra", "deu", "ita", "por", "rus", "chi_sim", "jpn"])
+st.sidebar.markdown("---")
+st.sidebar.markdown("**Analytics:** Coming soon...")
 
 # --- Searchable PDF Button ---
 if uploaded_file and uploaded_file.name.endswith(".pdf"):
@@ -176,7 +157,7 @@ if uploaded_file and uploaded_file.name.endswith(".pdf"):
 
         if result is True:
             with open(temp_output_path, "rb") as f:
-                st.download_button("⬇️ Download Searchable PDF", f, file_name="searchable_output.pdf")
+                st.download_button("⬇️Download Searchable PDF", f, file_name="searchable_output.pdf")
         elif result == "already_tagged":
             st.info("📄 This PDF already has selectable text.")
         else:
